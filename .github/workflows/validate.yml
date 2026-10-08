@@ -13,17 +13,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Validate Markdown and Structure
+      - name: Validate Core Files
         run: |
-          echo "Validating repository structure..."
-          test -f VERSION
-          test -f README.md
-          test -d terraform
-          test -d kubernetes
-          test -d helm
-          echo "Structure validation passed successfully!"
+          echo "Checking essential files..."
+          ls -la
+          [ -f VERSION ] || exit 1
+          [ -f README.md ] || exit 1
+          [ -d terraform ] || exit 1
+          [ -d kubernetes ] || exit 1
+          [ -d helm ] || exit 1
+          echo "Validation passed successfully!"
