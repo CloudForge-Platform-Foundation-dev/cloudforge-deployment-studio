@@ -18,24 +18,24 @@ jobs:
         run: |
           echo "Checking required directories..."
           dirs=("helm/cloudforge-platform" "helm/individual-charts" "kubernetes" "scripts" "docs")
-          for dir in ""; do
-            if [ ! -d "" ]; then
-              echo "::error::Required directory missing: "
+          for dir in "\"; do
+            if [ ! -d "\" ]; then
+              echo "::error::Required directory missing: \"
               exit 1
             fi
-            echo "✅ Found: "
+            echo "✅ Found: \"
           done
 
       - name: Check required files exist
         run: |
           echo "Checking required files..."
           files=("README.md" "VERSION" "helm/cloudforge-platform/Chart.yaml" "helm/cloudforge-platform/values.yaml")
-          for file in ""; do
-            if [ ! -f "" ]; then
-              echo "::error::Required file missing: "
+          for file in "\"; do
+            if [ ! -f "\" ]; then
+              echo "::error::Required file missing: \"
               exit 1
             fi
-            echo "✅ Found: "
+            echo "✅ Found: \"
           done
 
   validate-helm:
@@ -60,9 +60,9 @@ jobs:
         run: |
           echo "Linting individual charts..."
           charts=("identity" "ingest" "knowledge" "nova" "security")
-          for chart in ""; do
-            echo "Linting security..."
-            helm lint helm/individual-charts/security
+          for chart in "\"; do
+            echo "Linting \security..."
+            helm lint helm/individual-charts/\security
           done
 
       - name: Template Check
@@ -82,9 +82,9 @@ jobs:
         run: |
           echo "Validating namespace manifests..."
           for file in kubernetes/namespaces/*.yaml; do
-            echo "Checking ..."
-            if ! grep -q "kind: Namespace" ""; then
-              echo "::error:: is missing 'kind: Namespace'"
+            echo "Checking \..."
+            if ! grep -q "kind: Namespace" "\"; then
+              echo "::error::\ is missing 'kind: Namespace'"
               exit 1
             fi
           done
@@ -93,9 +93,9 @@ jobs:
         run: |
           echo "Validating RBAC manifests..."
           for file in kubernetes/rbac/*.yaml; do
-            echo "Checking ..."
-            if ! grep -q "kind:" ""; then
-              echo "::error:: is missing 'kind:' field"
+            echo "Checking \..."
+            if ! grep -q "kind:" "\"; then
+              echo "::error::\ is missing 'kind:' field"
               exit 1
             fi
           done
