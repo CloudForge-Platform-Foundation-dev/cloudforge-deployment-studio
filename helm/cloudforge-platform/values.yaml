@@ -1,0 +1,47 @@
+﻿global:
+  environment: dev
+
+identity:
+  enabled: true
+  replicaCount: 1
+  image:
+    repository: cloudforge-identity-service
+    tag: latest
+  service:
+    port: 8000
+
+ingest:
+  enabled: true
+  replicaCount: 1
+  image:
+    repository: cloudforge-ingest-service
+    tag: latest
+  service:
+    port: 8004
+
+knowledge:
+  enabled: true
+  replicaCount: 1
+  image:
+    repository: cloudforge-knowledge-studio
+    tag: latest
+  service:
+    port: 8001
+
+nova:
+  enabled: true
+  replicaCount: 1
+  image:
+    repository: cloudforge-nova-studio
+    tag: latest
+  service:
+    port: 8002
+
+security:
+  enabled: true
+  replicaCount: 1
+  image:
+    repository: cloudforge-security-studio
+    tag: latest
+  service:
+    port: 8003
