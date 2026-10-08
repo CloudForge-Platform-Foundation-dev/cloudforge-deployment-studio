@@ -10,8 +10,8 @@ metadata:
   namespace: cloudforge-platform
   name: cloudforge-role
 rules:
-- apiGroups: ["", "apps", "extensions"]
-  resources: ["pods", "services", "configmaps", "secrets"]
+- apiGroups: ["", "apps"]
+  resources: ["pods", "services", "configmaps"]
   verbs: ["get", "list", "watch"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
