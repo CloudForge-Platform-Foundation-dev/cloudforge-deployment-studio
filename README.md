@@ -1,3 +1,3 @@
 ﻿# CloudForge Deployment Studio
 
-Infrastructure, Kubernetes, and Helm orchestration for the CloudForge platform architecture.
+Central orchestration repository for CloudForge platform architecture, combining Terraform, Kubernetes, and Helm.
