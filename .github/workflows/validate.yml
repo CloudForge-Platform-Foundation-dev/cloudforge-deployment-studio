@@ -7,14 +7,95 @@ on:
     branches: [ "master", "main" ]
 
 jobs:
-  validate:
+  validate-structure:
     runs-on: ubuntu-latest
+    name: Validate Repository Structure
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Simple Validation Check
+      - name: Check required directories exist
         run: |
-          echo "Listing repository contents:"
-          ls -la
-          echo "Validation completed successfully."
+          echo "Checking required directories..."
+          dirs=("helm/cloudforge-platform" "helm/individual-charts" "kubernetes" "scripts" "docs")
+          for dir in ""; do
+            if [ ! -d "" ]; then
+              echo "::error::Required directory missing: "
+              exit 1
+            fi
+            echo "✅ Found: "
+          done
+
+      - name: Check required files exist
+        run: |
+          echo "Checking required files..."
+          files=("README.md" "VERSION" "helm/cloudforge-platform/Chart.yaml" "helm/cloudforge-platform/values.yaml")
+          for file in ""; do
+            if [ ! -f "" ]; then
+              echo "::error::Required file missing: "
+              exit 1
+            fi
+            echo "✅ Found: "
+          done
+
+  validate-helm:
+    runs-on: ubuntu-latest
+    name: Validate Helm Charts
+    needs: validate-structure
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: v3.15.0
+
+      - name: Lint Umbrella Chart
+        run: |
+          echo "Linting cloudforge-platform umbrella chart..."
+          helm lint helm/cloudforge-platform
+
+      - name: Lint Individual Charts
+        run: |
+          echo "Linting individual charts..."
+          charts=("identity" "ingest" "knowledge" "nova" "security")
+          for chart in ""; do
+            echo "Linting security..."
+            helm lint helm/individual-charts/security
+          done
+
+      - name: Template Check
+        run: |
+          echo "Running helm template check..."
+          helm template test helm/cloudforge-platform --namespace cloudforge-platform
+
+  validate-kubernetes:
+    runs-on: ubuntu-latest
+    name: Validate Kubernetes Manifests
+    needs: validate-structure
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate Namespace Manifests
+        run: |
+          echo "Validating namespace manifests..."
+          for file in kubernetes/namespaces/*.yaml; do
+            echo "Checking ..."
+            if ! grep -q "kind: Namespace" ""; then
+              echo "::error:: is missing 'kind: Namespace'"
+              exit 1
+            fi
+          done
+
+      - name: Validate RBAC Manifests
+        run: |
+          echo "Validating RBAC manifests..."
+          for file in kubernetes/rbac/*.yaml; do
+            echo "Checking ..."
+            if ! grep -q "kind:" ""; then
+              echo "::error:: is missing 'kind:' field"
+              exit 1
+            fi
+          done

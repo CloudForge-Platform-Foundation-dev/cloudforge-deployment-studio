@@ -1,42 +1,11 @@
-﻿# ==========================================
-# CloudForge Deployment Studio .gitignore
-# ==========================================
-
-# --- Terraform ---
-.terraform/
+﻿# Terraform
 *.tfstate
 *.tfstate.*
 *.tfvars
-*.tfvars.json
-!*.tfvars.example
-!*.tfvars.template
+!.tfvars.example
+.terraform/
+.terraform/
 
-# --- Helm ---
-*.tgz
-charts/
-helm/cloudforge-platform/charts/
-helm/cloudforge-platform/Chart.lock
-
-# --- Kubernetes & Secrets ---
-*.kubeconfig
-*-local.yaml
-*-dev.yaml
-*-secret.yaml
-# อนุาตเพาะไฟล์ template หลัก
-!values.yaml
-!values-prod.yaml
-
-# --- Scripts & OS Junk ---
+# OS files
 .DS_Store
 Thumbs.db
-*.log
-*.tmp
-*.swp
-__pycache__/
-*.pyc
-
-# --- Validation & Evidence ---
-evidence_output/
-.spectral.yaml.bak
-.venv/
-env/
