@@ -1,0 +1,7 @@
+﻿apiVersion: v1
+kind: Namespace
+metadata:
+  name: cloudforge-platform
+  labels:
+    environment: dev
+    studio: deployment-studio
