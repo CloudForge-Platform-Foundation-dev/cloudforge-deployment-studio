@@ -1,0 +1,29 @@
+﻿name: Validate Deployment Studio
+
+on:
+  push:
+    branches: [ "master", "main" ]
+  pull_request:
+    branches: [ "master", "main" ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Validate Markdown and Structure
+        run: |
+          echo "Validating repository structure..."
+          test -f VERSION
+          test -f README.md
+          test -d terraform
+          test -d kubernetes
+          test -d helm
+          echo "Structure validation passed successfully!"
