@@ -2,9 +2,29 @@
 *.tfstate
 *.tfstate.*
 *.tfvars
-!.tfvars.example
+!*.tfvars.example
+*.tfvars.json
+override.tf
+override.tf.json
 .terraform/
-.terraform/
+crash.log
+crash.*.log
+
+# AWS credentials
+*.pem
+*.key
+kubeconfig*
+*.kubeconfig
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+__pycache__/
+*.pyc
 
 # OS files
 .DS_Store
