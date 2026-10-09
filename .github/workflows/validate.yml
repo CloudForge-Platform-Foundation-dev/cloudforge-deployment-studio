@@ -1,18 +1,15 @@
-name: Validate Deployment Studio
+name: Validate CloudForge Deployment Studio
 
 on:
   push:
-    branches: [ "master", "main" ]
+    branches: [master]
   pull_request:
-    branches: [ "master", "main" ]
-
-permissions:
-  contents: read
+    branches: [master]
 
 jobs:
   secret-scan:
-    name: secret scan (gitleaks)
     runs-on: ubuntu-latest
+    name: secret scan (gitleaks)
     steps:
       - uses: actions/checkout@v4
         with:
@@ -47,7 +44,7 @@ jobs:
               echo "::error::Required directory missing: $dir"
               exit 1
             fi
-            echo "✅ Found: $dir"
+            echo "Found: $dir"
           done
 
       - name: Check required files exist
@@ -59,7 +56,7 @@ jobs:
               echo "::error::Required file missing: $file"
               exit 1
             fi
-            echo "✅ Found: $file"
+            echo "Found: $file"
           done
 
   validate-helm:
@@ -88,6 +85,11 @@ jobs:
             echo "Linting $chart..."
             helm lint helm/individual-charts/$chart
           done
+
+      - name: Build Helm Dependencies
+        run: |
+          echo "Building helm dependencies..."
+          helm dependency build helm/cloudforge-platform
 
       - name: Template Check
         run: |
