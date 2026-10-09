@@ -1,4 +1,4 @@
-﻿# 🚀 CloudForge Deployment Studio
+# 🚀 CloudForge Deployment Studio
 
 [![Validate Deployment Studio](https://github.com/CloudForge-Platform-Foundation-dev/cloudforge-deployment-studio/actions/workflows/validate.yml/badge.svg)](https://github.com/CloudForge-Platform-Foundation-dev/cloudforge-deployment-studio/actions/workflows/validate.yml)
 
