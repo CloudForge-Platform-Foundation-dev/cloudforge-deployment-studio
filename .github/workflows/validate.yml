@@ -1,4 +1,4 @@
-﻿name: Validate Deployment Studio
+name: Validate Deployment Studio
 
 on:
   push:
