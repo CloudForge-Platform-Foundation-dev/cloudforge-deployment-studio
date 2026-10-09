@@ -4,7 +4,7 @@ replicaCount: 1
 image:
   repository: cloudforge/ingest
   pullPolicy: IfNotPresent
-  tag: "latest"
+  tag: "1.0.0"
 
 service:
   type: ClusterIP

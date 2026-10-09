@@ -1,0 +1,18 @@
+dependencies:
+- name: identity
+  repository: file://../individual-charts/identity
+  version: 1.0.0
+- name: ingest
+  repository: file://../individual-charts/ingest
+  version: 1.0.0
+- name: knowledge
+  repository: file://../individual-charts/knowledge
+  version: 1.0.0
+- name: nova
+  repository: file://../individual-charts/nova
+  version: 1.0.0
+- name: security
+  repository: file://../individual-charts/security
+  version: 1.0.0
+digest: sha256:89a87f0da793136277ce2f732b06d53d92e5dd4d88abb7ec00a1008aa0eb428a
+generated: "2026-10-09T09:05:59.8862225+07:00"
