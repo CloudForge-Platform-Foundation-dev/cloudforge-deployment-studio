@@ -1,4 +1,4 @@
-﻿param(
+param(
     [string]$clusterName = 'cloudforge-dev-cluster'
 )
 

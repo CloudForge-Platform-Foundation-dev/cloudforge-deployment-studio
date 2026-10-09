@@ -1,4 +1,4 @@
-﻿# CloudForge Deployment Contract
+# CloudForge Deployment Contract
 
 ## 1. Scope & Standards
 - All services (Identity, Ingest, Knowledge, Nova, Security) must adhere to standardized health checks and JWT verification via JWKS.
